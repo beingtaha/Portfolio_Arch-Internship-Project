@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
 const Hero = () => {
-  const { colors, darkMode } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <div className={`${colors.bg} transition-colors duration-300`}>

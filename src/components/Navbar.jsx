@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
 const Navbar = () => {
-  const { color, setColor, darkMode, setDarkMode, colors } = useTheme();
+  const { color, setColor, darkMode, setDarkMode } = useTheme();
 
   const colorOptions = [
     { name: "Blue", value: "blue", class: "bg-blue-600" },
