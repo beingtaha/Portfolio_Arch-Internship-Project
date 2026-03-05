@@ -9,7 +9,7 @@ import Skills from "./components/Skills";
 import Achievements from "./components/Achievements";
 import Testimonials from "./components/Testimonials";
 import Blog from "./components/Blog";
-import Contact from "./components/Contact";
+import Footer from "./components/Footer"; // 👈 Import Footer
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Achievements />
         <Testimonials />
         <Blog />
-        <Contact />
+        <Footer /> {/* 👈 Footer at the end */}
       </div>
     </ThemeProvider>
   );

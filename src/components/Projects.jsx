@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import { motion } from "framer-motion"; // 👈 IMPORT MOTION
 
 // 📸 Images import karne ke liye
 const EcommerceImg = "/static/images/Ecommerce.PNG";
@@ -53,7 +54,7 @@ const Projects = () => {
     },
   ];
 
-  // 💼 Appverse Internship Projects
+  // 💼 Internship Projects
   const internshipProjects = [
     {
       id: 4,
@@ -165,18 +166,28 @@ const Projects = () => {
   );
 };
 
-// Project Card Component
+// Project Card Component with Animation
 const ProjectCard = ({ project, colors }) => {
   return (
-    <div
-      className={`${colors.cardBg} rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group`}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{
+        y: -10,
+        transition: { duration: 0.3 },
+      }}
+      className={`${colors.cardBg} glass-effect rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group`}
     >
       {project.image && (
         <div className="h-48 overflow-hidden">
-          <img
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.4 }}
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+            className="w-full h-full object-cover"
           />
         </div>
       )}
@@ -190,21 +201,39 @@ const ProjectCard = ({ project, colors }) => {
 
         <div className="mb-4">
           <span
-            className={`text-sm font-semibold ${colors.subheadingText} block mb-2`}
+            className={`text-sm font-semibold ${colors.subheadingText} block mb-3`}
           >
             Tech Stack:
           </span>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((t, i) => (
-              <span
+              <motion.span
                 key={i}
-                className={`inline-flex items-center px-3 py-1.5 ${colors.techBg} ${colors.techText} text-xs rounded-full font-medium`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.05 }}
+                whileHover={{
+                  scale: 1.1,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                }}
+                className={`
+          inline-flex items-center px-4 py-2 
+          bg-gradient-to-r ${colors.primary} bg-opacity-10 
+          ${colors.techText} text-xs rounded-full font-medium
+          border ${colors.border} border-opacity-30
+          backdrop-blur-sm
+        `}
               >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${colors.primary} mr-1.5`}
-                ></span>
+                <motion.span
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 360, 0],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className={`w-2 h-2 rounded-full ${colors.primary} mr-2`}
+                />
                 {t}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>
@@ -225,25 +254,29 @@ const ProjectCard = ({ project, colors }) => {
         </div>
 
         <div className="flex gap-3 mt-4">
-          <a
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
             className={`flex-1 text-center ${colors.primary} text-white px-3 py-2 rounded-lg ${colors.hover} transition-all duration-300 text-sm font-medium shadow-md hover:shadow-lg`}
           >
             GitHub
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 text-center border-2 ${colors.border} ${colors.text} px-3 py-2 rounded-lg ${colors.hover} transition-all duration-300 text-sm font-medium bg-opacity-10 backdrop-blur-sm`}
+            className={`flex-1 text-center border-2 ${colors.border} ${colors.text} px-3 py-2 rounded-lg hover:bg-gray-50 transition-all duration-300 text-sm font-medium bg-opacity-10 backdrop-blur-sm`}
           >
             Live Demo
-          </a>
+          </motion.a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

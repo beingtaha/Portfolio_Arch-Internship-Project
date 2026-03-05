@@ -73,7 +73,7 @@ const Contact = () => {
                     🔗
                   </span>
                   <a
-                    href="https://linkedin.com/in/taha-ahmed"
+                    href="https://www.linkedin.com/in/tahaa-ahmed/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${colors.bodyText} hover:${colors.text} transition`}
